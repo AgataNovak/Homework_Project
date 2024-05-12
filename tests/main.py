@@ -1,4 +1,4 @@
-from src.processing import executed_dicts
+from src.processing import executed_dicts, sorted_dicts
 from src.widget import card_or_account_mask, date_formating
 
 print(card_or_account_mask("Счет 73654108430135874305"))
@@ -12,3 +12,5 @@ dicts = [
     {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
 ]
 print(executed_dicts(dicts, "CANCELED"))
+
+print(sorted_dicts(dicts, False))
