@@ -26,8 +26,8 @@ def card_or_account_mask(number: str) -> str:
 
     return result
 
-def date_formating(date_old_format: str) -> str:
-    """ Функция принимает дату старого формата и возвращает дату в новом формате """
-    new_date = f'{date_old_format[8:10]}.{date_old_format[5:7]}.{date_old_format[0:4]}'
-    return new_date
 
+def date_formating(date_old_format: str) -> str:
+    """Функция принимает дату старого формата и возвращает дату в новом формате"""
+    new_date = f"{date_old_format[8:10]}.{date_old_format[5:7]}.{date_old_format[0:4]}"
+    return new_date
