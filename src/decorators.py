@@ -2,7 +2,7 @@ import os.path
 from functools import wraps
 
 
-def log(filename):
+def log(filename=None):
     """ Функция-декоратор логирует в заданный аргументом декоратора файл или, при отсутствии файла для записи, в консоль
      информацию о работе заданной декоратору функции и/или о возникшей при работе функции ошибке """
     def decorator(func):
@@ -15,11 +15,11 @@ def log(filename):
                     try:
                         result = func(*args, **kwargs)
                         log_str = (f"Function {func.__name__} ok. Returned {result}")
+                        file.write(f'{log_str}\n')
+                        return result
 
                     except Exception as _ex:
                         log_str = (f"{func.__name__} error: {_ex}. Inputs: {args}, {kwargs}")
-
-                    finally:
                         file.write(f'{log_str}\n')
             else:
                 try:
