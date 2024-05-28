@@ -1,20 +1,36 @@
+import os.path
 from functools import wraps
 
 
-def log(filename=None):
+def log(filename):
     """ Функция-декоратор логирует в заданный аргументом декоратора файл или, при отсутствии файла для записи, в консоль
      информацию о работе заданной декоратору функции и/или о возникшей при работе функции ошибке """
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            if filename is None:
+            if filename:
+                if not os.path.exists(r'logs'):
+                    os.mkdir(r'logs')
+                with open(os.path.join(r'logs', filename), 'at') as file:
+                    try:
+                        result = func(*args, **kwargs)
+                        log_str = (f"Function {func.__name__} ok. Returned {result}")
+
+                    except Exception as _ex:
+                        log_str = (f"{func.__name__} error: {_ex}. Inputs: {args}, {kwargs}")
+
+                    finally:
+                        file.write(f'{log_str}\n')
+            else:
                 try:
                     result = func(*args, **kwargs)
-                    print(f"Function {func.__name__} ok. Returned {result}")
+                    log_str = (f"Function {func.__name__} ok. Returned {result}")
+                    print(log_str)
+                    return result
+
                 except Exception as _ex:
-                    print(f"{func.__name__} error: {_ex}. Inputs: {args}, {kwargs}")
-            else:
-                pass
+                    log_str = (f"{func.__name__} error: {_ex}. Inputs: {args}, {kwargs}")
+                    print(log_str)
 
         return wrapper
 

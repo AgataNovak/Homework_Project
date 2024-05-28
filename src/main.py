@@ -80,7 +80,7 @@ for card_number in card_number_generator(1234567, 1234569):
     print(card_number)
 
 
-@log()
+@log('logging')
 def addition(x, y):
     return x + y
 
