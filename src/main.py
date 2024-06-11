@@ -3,6 +3,7 @@ from src.widget import card_or_account_mask, date_formating
 from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 from src.decorators import log
 
+
 print(card_or_account_mask("Счет 73654108430135874305"))
 print(card_or_account_mask("Visa Platinum 7000 7922 8960 6361"))
 print(date_formating("2018-07-11T02:26:18.671407"))

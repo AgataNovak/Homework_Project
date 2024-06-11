@@ -10,6 +10,8 @@ python = "^3.12"
 black = "^24.4.2"
 isort = "^5.13.2"
 mypy = "^1.10.0"
+python-dotenv = "^1.0.1"
+requests = "^2.32.3"
 
 [tool.poetry.group.lint.dependencies]
 flake8 = "^7.0.0"
