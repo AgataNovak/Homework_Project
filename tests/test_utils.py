@@ -15,9 +15,10 @@ class TestGetTransactions(unittest.TestCase):
 
     @patch("builtins.open")
     def test_get_transactions_info(self, mock_open):
-        mock_open.return_value.__enter__.return_value.read.return_value = \
-            ('[{"id": 441945886, "state": "EXECUTED", "date": "2019-08-26T10:50:58.294041", "operationAmount":'
-             ' {"amount": "31957.58", "currency": {"name": "\u0440\u0443\u0431.", "code": "RUB"}}}]')
+        mock_open.return_value.__enter__.return_value.read.return_value = (
+            '[{"id": 441945886, "state": "EXECUTED", "date": "2019-08-26T10:50:58.294041", "operationAmount":'
+            ' {"amount": "31957.58", "currency": {"name": "\u0440\u0443\u0431.", "code": "RUB"}}}]'
+        )
 
         transactions = get_transactions_info("test_file.json")
         self.assertEqual(
@@ -69,7 +70,7 @@ class TestExternalApi(unittest.TestCase):
         mock_get.return_value.status_code = 200
         currency = "USD"
         amount = 100
-        result = currency_conversion(currency, amount)
+        result = currency_conversion(currency, amount, API_KEY)
         self.assertEqual(result, 7500.0)
         mock_get.assert_called_once_with(
             "GET",

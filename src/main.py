@@ -1,7 +1,9 @@
+import os
 from src.processing import executed_dicts, sorted_dicts
 from src.widget import card_or_account_mask, date_formating
 from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 from src.decorators import log
+from src.utils import amount_of_transaction, get_transactions_info
 
 
 print(card_or_account_mask("Счет 73654108430135874305"))
@@ -88,3 +90,27 @@ def addition(x, y):
 
 print(addition(5, 3))
 addition(5, "3")
+
+
+path_to_json = os.path.abspath("../data/operations.json")
+print(get_transactions_info(path_to_json))
+
+transaction = [
+    {
+        "id": 441945886,
+        "state": "EXECUTED",
+        "date": "2019-08-26T10:50:58.294041",
+        "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
+    }
+]
+print(amount_of_transaction(transaction))
+
+transaction = [
+    {
+        "id": 441945886,
+        "state": "EXECUTED",
+        "date": "2019-08-26T10:50:58.294041",
+        "operationAmount": {"amount": "100", "currency": {"name": "dollar", "code": "USD"}},
+    }
+]
+print(amount_of_transaction(transaction))
