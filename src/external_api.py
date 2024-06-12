@@ -8,7 +8,7 @@ headers = {"apikey": API_KEY}
 
 
 def currency_conversion(currency_from, amount):
-    """ Функция конвертирует сумму заданной валюты в рубли"""
+    """Функция конвертирует сумму заданной валюты в рубли"""
     url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency_from}&amount={amount}"
 
     response = requests.request("GET", url, headers=headers)
