@@ -95,6 +95,7 @@ addition(5, "3")
 path_to_json = os.path.abspath("../data/operations.json")
 print(get_transactions_info(path_to_json))
 
+
 transaction = [
     {
         "id": 441945886,
@@ -113,4 +114,3 @@ transaction = [
         "operationAmount": {"amount": "100", "currency": {"name": "dollar", "code": "USD"}},
     }
 ]
-print(amount_of_transaction(transaction))
