@@ -2,6 +2,7 @@ import pytest
 from src.main import transactions
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 from src.widget import card_or_account_mask, date_formating
+from src.decorators import log
 
 
 @pytest.mark.parametrize(
@@ -71,3 +72,24 @@ def test_card_number_generator():
     assert next(card_number_generated) == "0000 0000 0012 3457"
     assert next(card_number_generated) == "0000 0000 0012 3458"
     assert next(card_number_generated) == "0000 0000 0012 3459"
+
+
+def test_log(capsys):
+    @log()
+    def addition(x, y):
+        return x + y
+
+    addition(2, 3)
+    captured = capsys.readouterr()
+    assert captured.out == "Function addition ok. Returned 5\n"
+
+    addition(2, "3")
+    captured = capsys.readouterr()
+    assert captured.out == "addition error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (2, '3'), {}\n"
+
+    addition("7", [2, 3, 4])
+    captured = capsys.readouterr()
+    assert (
+        captured.out
+        == """addition error: can only concatenate str (not "list") to str. Inputs: ('7', [2, 3, 4]), {}\n"""
+    )
