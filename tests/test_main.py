@@ -1,8 +1,9 @@
 import pytest
-from src.main import transactions
-from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
-from src.widget import card_or_account_mask, date_formating
+
 from src.decorators import log
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
+from src.main import transactions
+from src.widget import card_or_account_mask, date_formating
 
 
 @pytest.mark.parametrize(

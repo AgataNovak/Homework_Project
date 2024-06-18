@@ -1,10 +1,11 @@
 import os
-from src.processing import executed_dicts, sorted_dicts
-from src.widget import card_or_account_mask, date_formating
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
-from src.decorators import log
-from src.utils import amount_of_transaction, get_transactions_info
 
+from src.decorators import log
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
+from src.processing import executed_dicts, sorted_dicts
+from src.utils import (amount_of_transaction, get_transactions_info_csv, get_transactions_info_excel,
+                       get_transactions_info_json)
+from src.widget import card_or_account_mask, date_formating
 
 print(card_or_account_mask("Счет 73654108430135874305"))
 print(card_or_account_mask("Visa Platinum 7000 7922 8960 6361"))
@@ -93,10 +94,18 @@ addition(5, "3")
 
 
 path_to_json = os.path.abspath("../data/operations.json")
-print(get_transactions_info(path_to_json))
+path_to_csv = os.path.abspath("../data/transactions.csv")
+path_to_excel = os.path.abspath("../data/transactions_excel.xlsx")
+
+print(get_transactions_info_json(path_to_json))
+
+print(type(get_transactions_info_csv(path_to_csv)))
+print(get_transactions_info_csv(path_to_csv))
+
+print(get_transactions_info_excel(path_to_excel))
 
 
-transaction = [
+transaction_rub = [
     {
         "id": 441945886,
         "state": "EXECUTED",
@@ -104,9 +113,9 @@ transaction = [
         "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
     }
 ]
-print(amount_of_transaction(transaction))
+print(amount_of_transaction(transaction_rub))
 
-transaction = [
+transaction_usd = [
     {
         "id": 441945886,
         "state": "EXECUTED",
@@ -114,3 +123,8 @@ transaction = [
         "operationAmount": {"amount": "100", "currency": {"name": "dollar", "code": "USD"}},
     }
 ]
+
+print(amount_of_transaction(transaction_usd))
+
+print(get_transactions_info_csv(path_to_csv))
+print(get_transactions_info_excel(path_to_excel))
