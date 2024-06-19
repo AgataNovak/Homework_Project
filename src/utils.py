@@ -15,7 +15,7 @@ headers = {"apikey": API_KEY}
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path_logs = os.path.join(current_dir, "../logs", "utils.log")
-logger = setup_logger('utils', file_path_logs)
+logger = setup_logger("utils", file_path_logs)
 
 
 def get_transactions_info_json(path_to_json):

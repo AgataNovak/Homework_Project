@@ -4,7 +4,7 @@ from src.logger import setup_logger
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path_logs = os.path.join(current_dir, "../logs", "masks.log")
-logger = setup_logger('masks', file_path_logs)
+logger = setup_logger("masks", file_path_logs)
 
 
 def card_mask(card_number: Union[list, str, int]) -> str:
