@@ -6,8 +6,12 @@ import pandas as pd
 from dotenv import load_dotenv
 
 from src.external_api import currency_conversion
-from src.utils import (amount_of_transaction, get_transactions_info_csv, get_transactions_info_excel,
-                       get_transactions_info_json)
+from src.utils import (
+    amount_of_transaction,
+    get_transactions_info_csv,
+    get_transactions_info_excel,
+    get_transactions_info_json,
+)
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
