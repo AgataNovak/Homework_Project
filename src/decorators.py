@@ -1,6 +1,6 @@
 import os.path
 from functools import wraps
-from typing import Callable, Any
+from typing import Any, Callable
 
 
 def log(filename: Any = None) -> Callable:
