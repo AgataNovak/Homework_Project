@@ -1,13 +1,10 @@
+import os
 from typing import Union
-import logging
+from src.logger import setup_logger
 
-
-logger = logging.getLogger("masks")
-logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("../logs/masks.log", "w")
-file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
-file_handler.setFormatter(file_formatter)
-logger.addHandler(file_handler)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+file_path_logs = os.path.join(current_dir, "../logs", "masks.log")
+logger = setup_logger("masks", file_path_logs)
 
 
 def card_mask(card_number: Union[list, str, int]) -> str:
